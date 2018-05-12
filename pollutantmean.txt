@@ -1,0 +1,9 @@
+pollutantmean <- function(directory, pollutant, id = 1:332) {
+	files <- list.files(directory, full.names = TRUE)  #getting the file names#
+	readings = data.frame()								#creating a data frame #
+	for(i in seq_along(id)) {
+		readings <- rbind(readings, read.csv(files[id[i]]))	 #reading all the data files in the dataframe#	
+	}
+	poll=mean(readings[[pollutant]], na.rm = TRUE)			#calculating the mean. na.rm will remove the missing values#
+	poll
+}
